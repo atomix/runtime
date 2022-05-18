@@ -12,6 +12,9 @@ import "atomix/runtime/v1/descriptor.proto";
 import "atomix/runtime/v1/headers.proto";
 import "gogoproto/gogo.proto";
 
+option java_package = "io.atomix.runtime.election";
+option java_multiple_files = true;
+
 // LeaderElectionManager is a manager for a leader election primitive
 service LeaderElectionManager {
     option (atomix.runtime.v1.name) = "LeaderElection";

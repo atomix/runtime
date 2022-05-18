@@ -13,6 +13,9 @@ import "atomix/runtime/v1/headers.proto";
 import "atomix/runtime/v1/object.proto";
 import "gogoproto/gogo.proto";
 
+option java_package = "io.atomix.runtime.list";
+option java_multiple_files = true;
+
 // List is a service for a list primitive
 service List {
     option (atomix.runtime.v1.name) = "List";

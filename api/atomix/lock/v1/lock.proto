@@ -14,6 +14,9 @@ import "atomix/runtime/v1/headers.proto";
 import "atomix/runtime/v1/object.proto";
 import "gogoproto/gogo.proto";
 
+option java_package = "io.atomix.runtime.lock";
+option java_multiple_files = true;
+
 // Lock is a service for a lock primitive
 service Lock {
     option (atomix.runtime.v1.name) = "Lock";
