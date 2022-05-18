@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-package otelemetry
+package otel
 
 import (
 	"context"
@@ -24,7 +24,7 @@ func UnaryServerTelemetryInterceptor(opts ...InstrumentationOption) grpc.UnarySe
 		requestMetadata, _ := metadata.FromIncomingContext(ctx)
 		metadataCopy := requestMetadata.Copy()
 
-		instrumentation := NewInstrumentation(opts)
+		instrumentation := NewInstrumentation(opts...)
 		bags, spanCtx := instrumentation.Extract(ctx, &metadataCopy)
 		ctx = baggage.ContextWithBaggage(ctx, bags)
 
@@ -85,7 +85,7 @@ func StreamTelemetryServerInterceptor(opts ...InstrumentationOption) grpc.Stream
 		requestMetadata, _ := metadata.FromIncomingContext(ctx)
 		metadataCopy := requestMetadata.Copy()
 
-		instrumentation := NewInstrumentation(opts)
+		instrumentation := NewInstrumentation(opts...)
 		bags, spanCtx := instrumentation.Extract(ctx, &metadataCopy)
 		ctx = baggage.ContextWithBaggage(ctx, bags)
 

@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-package otelemetry
+package otel
 
 import (
 	"context"
@@ -44,7 +44,7 @@ func (o *InstrumentationOptions) Extract(ctx context.Context, metadata *metadata
 type InstrumentationOption func(*InstrumentationOptions)
 
 // NewInstrumentation creates a configuration for an instrumentation using a set of given options
-func NewInstrumentation(opts []InstrumentationOption) *InstrumentationOptions {
+func NewInstrumentation(opts ...InstrumentationOption) *InstrumentationOptions {
 	c := &InstrumentationOptions{
 		propagators:    otel.GetTextMapPropagator(),
 		tracerProvider: trace.NewNoopTracerProvider(),
