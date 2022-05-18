@@ -12,6 +12,9 @@ import "atomix/runtime/v1/descriptor.proto";
 import "atomix/runtime/v1/headers.proto";
 import "gogoproto/gogo.proto";
 
+option java_package = "io.atomix.runtime.indexedmap";
+option java_multiple_files = true;
+
 // IndexedMapManager is a manager for an indexed map primitive
 service IndexedMapManager {
     option (atomix.runtime.v1.name) = "IndexedMap";

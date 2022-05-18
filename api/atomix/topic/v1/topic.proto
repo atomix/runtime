@@ -13,6 +13,9 @@ import "gogoproto/gogo.proto";
 import "atomix/runtime/v1/headers.proto";
 import "google/protobuf/timestamp.proto";
 
+option java_package = "io.atomix.runtime.topic";
+option java_multiple_files = true;
+
 service Topic {
     option (atomix.runtime.v1.name) = "Topic";
     option (atomix.runtime.v1.component) = PRIMITIVE;

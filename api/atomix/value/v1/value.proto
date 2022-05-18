@@ -13,6 +13,9 @@ import "atomix/runtime/v1/headers.proto";
 import "atomix/runtime/v1/object.proto";
 import "gogoproto/gogo.proto";
 
+option java_package = "io.atomix.runtime.value";
+option java_multiple_files = true;
+
 // Value is a service for a value primitive
 service Value {
     option (atomix.runtime.v1.name) = "Value";
