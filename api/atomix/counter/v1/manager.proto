@@ -9,8 +9,7 @@ syntax = "proto3";
 package atomix.counter.v1;
 
 import "atomix/runtime/v1/descriptor.proto";
-import "atomix/runtime/v1/headers.proto";
-import "gogoproto/gogo.proto";
+import "atomix/runtime/v1/requests.proto";
 
 option java_package = "io.atomix.runtime.counter";
 option java_multiple_files = true;
@@ -20,43 +19,13 @@ service CounterManager {
     option (atomix.runtime.v1.name) = "Counter";
     option (atomix.runtime.v1.component) = MANAGER;
 
-    rpc Create (CreateRequest) returns (CreateResponse) {
+    rpc Create (atomix.runtime.v1.CreateRequest) returns (atomix.runtime.v1.CreateResponse) {
         option (atomix.runtime.v1.operation_id) = 1;
         option (atomix.runtime.v1.operation_type) = CREATE;
     }
 
-    rpc Close (CloseRequest) returns (CloseResponse) {
+    rpc Close (atomix.runtime.v1.CloseRequest) returns (atomix.runtime.v1.CloseResponse) {
         option (atomix.runtime.v1.operation_id) = 2;
         option (atomix.runtime.v1.operation_type) = CLOSE;
     }
-}
-
-message CreateRequest {
-    atomix.runtime.v1.ClusterRequestHeaders headers = 1 [
-        (atomix.runtime.v1.headers) = true,
-        (gogoproto.nullable) = false
-    ];
-    string name = 2;
-}
-
-message CreateResponse {
-    atomix.runtime.v1.ClusterResponseHeaders headers = 1 [
-        (atomix.runtime.v1.headers) = true,
-        (gogoproto.nullable) = false
-    ];
-}
-
-message CloseRequest {
-    atomix.runtime.v1.ClusterRequestHeaders headers = 1 [
-        (atomix.runtime.v1.headers) = true,
-        (gogoproto.nullable) = false
-    ];
-    string name = 2;
-}
-
-message CloseResponse {
-    atomix.runtime.v1.ClusterResponseHeaders headers = 1 [
-        (atomix.runtime.v1.headers) = true,
-        (gogoproto.nullable) = false
-    ];
 }
