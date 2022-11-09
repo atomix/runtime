@@ -19,8 +19,7 @@ type StorageProfile struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   StorageProfileSpec   `json:"spec"`
-	Status StorageProfileStatus `json:"status"`
+	Spec StorageProfileSpec `json:"spec"`
 }
 
 // StorageProfileSpec is the spec for a StorageProfile resource
@@ -108,44 +107,4 @@ type StderrSinkConfig struct {
 // FileSinkConfig is the configuration for a file sink
 type FileSinkConfig struct {
 	Path string `json:"path" yaml:"path"`
-}
-
-type StorageProfileStatus struct {
-	PodStatuses []PodStatus `json:"podStatuses,omitempty"`
-}
-
-type PodStatus struct {
-	Name  string      `json:"name"`
-	Proxy ProxyStatus `json:"proxy"`
-}
-
-type ProxyStatus struct {
-	Routes []RouteStatus `json:"routes"`
-}
-
-type RouteState string
-
-const (
-	RoutePending       RouteState = "Pending"
-	RouteConnecting    RouteState = "Connecting"
-	RouteConnected     RouteState = "Connected"
-	RouteConfiguring   RouteState = "Configuring"
-	RouteDisconnecting RouteState = "Disconnecting"
-	RouteDisconnected  RouteState = "Disconnected"
-)
-
-type RouteStatus struct {
-	Store   corev1.ObjectReference `json:"store"`
-	State   RouteState             `json:"state"`
-	Version string                 `json:"version"`
-}
-
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
-
-// StorageProfileList is a list of StorageProfile resources
-type StorageProfileList struct {
-	metav1.TypeMeta `json:",inline"`
-	metav1.ListMeta `json:"metadata"`
-
-	Items []StorageProfile `json:"items"`
 }

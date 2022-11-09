@@ -21,6 +21,9 @@ func AddControllers(mgr manager.Manager) error {
 	if err := addProfileController(mgr); err != nil {
 		return err
 	}
+	if err := addDataStoreController(mgr); err != nil {
+		return err
+	}
 	if err := addPodController(mgr); err != nil {
 		return err
 	}
