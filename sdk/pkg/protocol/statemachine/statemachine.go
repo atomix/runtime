@@ -255,7 +255,7 @@ func (s *sessionManager) keepAlive(input *protocol.KeepAliveInput, stream stream
 	sessionID := SessionID(input.SessionID)
 	session, ok := s.sessions.get(sessionID)
 	if !ok {
-		stream.Error(errors.NewForbidden("session not found"))
+		stream.Error(errors.NewFault("session not found"))
 		stream.Close()
 	} else {
 		session.keepAlive(input, stream)
@@ -266,7 +266,7 @@ func (s *sessionManager) closeSession(input *protocol.CloseSessionInput, stream 
 	sessionID := SessionID(input.SessionID)
 	session, ok := s.sessions.get(sessionID)
 	if !ok {
-		stream.Error(errors.NewForbidden("session not found"))
+		stream.Error(errors.NewFault("session not found"))
 		stream.Close()
 	} else {
 		session.close(input, stream)
@@ -277,7 +277,7 @@ func (s *sessionManager) propose(input *protocol.SessionProposalInput, stream st
 	sessionID := SessionID(input.SessionID)
 	session, ok := s.sessions.get(sessionID)
 	if !ok {
-		stream.Error(errors.NewForbidden("session not found"))
+		stream.Error(errors.NewFault("session not found"))
 		stream.Close()
 	} else {
 		session.propose(input, stream)
@@ -288,7 +288,7 @@ func (s *sessionManager) query(input *protocol.SessionQueryInput, stream streams
 	sessionID := SessionID(input.SessionID)
 	session, ok := s.sessions.get(sessionID)
 	if !ok {
-		stream.Error(errors.NewForbidden("session not found"))
+		stream.Error(errors.NewFault("session not found"))
 		stream.Close()
 	} else {
 		session.query(input, stream)
