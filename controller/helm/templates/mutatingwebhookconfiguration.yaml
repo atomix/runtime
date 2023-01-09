@@ -10,7 +10,7 @@ webhooks:
   - name: injector.proxy.atomix.io
     namespaceSelector:
       matchExpressions:
-        - key: kubernetes.io/metadata.name
+        - key: kubernetes.io/metadata.namespace
           operator: NotIn
           values: ["kube-system"]
     rules:
