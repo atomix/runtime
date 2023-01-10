@@ -13,7 +13,6 @@ spec:
     metadata:
       labels:
         app: example
-      annotations:
         proxy.atomix.io/inject: "true"
         proxy.atomix.io/profile: example-profile
     spec:
