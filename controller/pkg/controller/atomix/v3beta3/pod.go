@@ -139,6 +139,10 @@ func (r *PodReconciler) Reconcile(ctx context.Context, request reconcile.Request
 		return reconcile.Result{}, err
 	}
 
+	if pod.Labels == nil {
+		return reconcile.Result{}, nil
+	}
+
 	profileName, ok := pod.Labels[proxyProfileLabel]
 	if !ok {
 		return reconcile.Result{}, nil

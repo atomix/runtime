@@ -237,6 +237,9 @@ func (i *ProxyInjector) Handle(ctx context.Context, request admission.Request) a
 	})
 
 	// Add proxy metadata annotations to the Pod.
+	if pod.Annotations == nil {
+		pod.Annotations = make(map[string]string)
+	}
 	pod.Annotations[proxyInjectAnnotation] = injectRuntime
 	pod.Annotations[proxyProfileAnnotation] = profileName
 	pod.Annotations[proxyInjectStatusAnnotation] = injectedStatus
